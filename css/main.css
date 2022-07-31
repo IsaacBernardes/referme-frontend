@@ -1,0 +1,28 @@
+.content {
+	width: 60vw;
+	height: 100vh;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #FFFFFF00;
+	margin: auto;
+	padding: 1rem 0;
+	text-align: center;
+}
+
+.content img {
+	width: 14rem;
+	margin: 0 auto;
+}
+
+.title {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 96px;
+	line-height: 113px;
+	text-align: center;
+	
+	color: #AFAFAF;
+}

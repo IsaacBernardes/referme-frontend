@@ -1,0 +1,41 @@
+.content {
+	width: 100vw;
+	height: 100vh;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #FFFFFF00;
+	margin: auto;
+	padding: 1rem 1rem;
+}
+
+.content img {
+	width: 10rem;
+}
+
+.title {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 96px;
+	line-height: 113px;
+	text-align: center;
+	
+	color: #AFAFAF;
+}
+
+
+label {
+	font-family: 'Inter';
+	font-weight: 600;
+	color: #FFF;
+}
+
+input, select {
+	border-radius: 0 !important;
+	border: 1px solid #FDAD00 !important;
+	background: rgba(0, 0, 0, 0.31) !important;
+	color: #FFFFFF !important;
+	padding: 0.75rem 1rem !important;
+}

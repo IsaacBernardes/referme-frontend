@@ -1,0 +1,39 @@
+@import url('../libs/bootstrap-5.2.0-dist/css/bootstrap.min.css');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 36px;
+}
+
+body {
+    background: linear-gradient(107.56deg, #262626 0%, #313131 100%) !important;
+}
+
+button:focus {
+	box-shadow: 0px 0px 20px 20px rgba(0, 238, 253, 0.25);
+	border: 0;
+	outline: 0;
+}
+
+.btn-yellow {
+	background: #FDAD00 !important;
+	color: #FFFFFF !important;
+	font-weight: 600 !important;
+	font-family: 'Inter' !important;
+}
+
+.btn-grey {
+	background: #9E9E9E !important;
+	color: #FFFFFF !important;
+	font-weight: 600 !important;
+	font-family: 'Inter' !important;
+}
+
+.ui-btn-hidden {
+	display: none;
+}
