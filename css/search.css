@@ -1,0 +1,8 @@
+input, select {
+	border-radius: 0 !important;
+	border: 1px solid #FDAD00 !important;
+	background: rgba(0, 0, 0, 0.31) !important;
+	color: #FFFFFF !important;
+	padding: 0.25rem 0.6rem !important;
+  width: 22rem !important;
+}

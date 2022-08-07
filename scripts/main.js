@@ -1,18 +1,14 @@
-function onSuccess(files) {
-    for (var i = 0; i < files.length; i++) {
-        console.log('File path and name is: ' + files[i]);
-    }
-}
+var profiles = [];
 
-function onError(error) {
-    console.log(error);
+function onSuccessRead(text) {
+  profiles = JSON.parse(text ?? "[]");
+	console.log(profiles);
 }
 
 document.onreadystatechange = (ev) => {
 
-    if (!tizen.filesystem.pathExists("documents/profile.json")) {
-        tizen.filesystem.createFile("profile.json");
-    }
+	// READ FILE IF EXIST
+	fileReader = new TizenFileReader();
+	fileReader.readFile('profiles.json', onSuccessRead);
 
-    tizen.filesystem.listDirectory('documents/', onSuccess, onError);
 }

@@ -27,6 +27,16 @@ button:focus {
 	font-family: 'Inter' !important;
 }
 
+.btn-inverted-yellow {
+	background: #FDAD0000 !important;
+	color: #FDAD00 !important;
+	border: 2px solid #FDAD00 !important;
+	font-weight: 600 !important;
+	font-family: 'Inter' !important;
+	border-radius: 0 !important;
+	padding: 0.3rem !important;
+}
+
 .btn-grey {
 	background: #9E9E9E !important;
 	color: #FFFFFF !important;
@@ -36,4 +46,17 @@ button:focus {
 
 .ui-btn-hidden {
 	display: none;
+}
+
+.section-label {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 36px;
+	color: #FFFFFF;
+}
+
+.section-label::before {
+	content: "― ";
+	color: #FDAD00;
 }
