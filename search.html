@@ -3,52 +3,37 @@
 	<head>
 	    <title>ReferMe</title>
 	    <link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Mohave:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Mohave:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	    <link rel="stylesheet" type="text/css" href="css/global.css"/>
-      <link rel="stylesheet" type="text/css" href="css/search.css"/>
-	    <script src="scripts/global.js"></script>
+      	<link rel="stylesheet" type="text/css" href="css/search.css"/>
+      	<link href="libs/jquery-3.6.0.min.js" type="text/css" rel="stylesheet">
+	  	<script src="scripts/global.js"></script>
 	</head>
 	<body>
 		<nav-bar data-selected="search"></nav-bar>
 		<div class="d-flex flex-column gap-3" style="padding: 1rem;">
 			<div class="d-flex align-items-center justify-content-between w-100">
-				<input type="text" class="form-control" placeholder="Procurar">
-        <button class="btn btn-inverted-yellow">
-          <img src="assets/Filter.svg" alt="">
-        </button>
+				<div id="filter-row" style="display: none; column-gap: 0.5rem">
+					<input type="text" class="form-control col-md-5" placeholder="Procurar">
+					<select class="form-control col-md-5">
+						<option>Todas Categorias</option>
+						<option>Ação</option>
+						<option>Terror</option>
+						<option>Comédia</option>
+						<option>Suspense</option>
+						<option>Ficção</option>
+					</select>
+				</div>
+		        <button class="btn btn-inverted-yellow" style="margin-left: auto" onclick="toggleFilters()">
+		          <img src="assets/Filter.svg" alt="">
+		        </button>
 			</div>
-			<div class="d-flex row" id="search-row" style="display: none;">
+			
+			<div id="movie-list" class="d-flex w-100 flex-wrap gap-3">
 				
-			</div>
-			<div class="d-flex justify-content-between w-100 flex-wrap gap-3">
-				<movie-card data-image="https://upload.wikimedia.org/wikipedia/pt/6/62/How_to_Train_Your_Dragon_%28filme%29_Poster.jpg"></movie-card>
-				<movie-card data-image="https://br.web.img3.acsta.net/pictures/18/11/13/12/10/5661398.jpg"></movie-card>
-				<movie-card data-image="https://upload.wikimedia.org/wikipedia/pt/thumb/9/9b/Avengers_Endgame.jpg/250px-Avengers_Endgame.jpg"></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
-				<movie-card></movie-card>
 			</div>
 		</div>
 	</body>
+	<script src="scripts/search.js"></script>
 </html>
