@@ -9,7 +9,7 @@ function onSuccessRead(text) {
 		profilesHTML = ""
 		for (const profile of profiles) {
 			profilesHTML += `
-			<div class="d-flex flex-column align-items-center justify-content-center gap-3" style="width: auto;">
+			<div class="d-flex flex-column align-items-center justify-content-center gap-3" style="width: auto;" data-role="ui-option" onclick="redirectTo('recommendations')">
 				<div style="background-color: #D9D9D9; border-radius: 100%; width: 7rem; height: 7rem; overflow: hidden;">
 					<img src="assets/person-1.jpg" style="width: 100%; height: 100%">
 				</div>
@@ -26,6 +26,8 @@ function onSuccessRead(text) {
 		const profileListHTML = document.getElementById("no-profiles");
 		profileListHTML.style.display = "flex";
 	}
+	
+	loadUIComponents();
 }
 
 document.onreadystatechange = (ev) => {

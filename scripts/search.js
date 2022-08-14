@@ -43,6 +43,7 @@ function getData() {
 
   for (const movie of result) {
     const movieCard = document.createElement('movie-card');
+    movieCard.setAttribute('data-role', 'ui-option');
     movieCard.setAttribute('data-object', JSON.stringify(movie));
     movieListDiv.appendChild(movieCard);
   }

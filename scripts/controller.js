@@ -39,46 +39,187 @@ window.TvKeyCode =
 				
 }
 
-var cursorPosition = 0;
+var focusElement;
 var cursorElements = []
 
 function setFocusElement(e) {
+	
+	let nextElement = null;
+	let candidates = [];
+	let size = 0;
+	
+	if (focusElement == null && cursorElements.length > 0) {
+		cursorElements[0].classList.add("focus");
+		cursorElements[0].focus()
+		focusElement = cursorElements[0];
+	}
 
 	switch (e.keyCode) {
 		case TvKeyCode.KEY_ENTER:
-			console.log(cursorElements[cursorPosition]);
-//			window.location.href = $("#id"+mainfocus).attr("href");
-            break;
+			e.preventDefault();
+			if (focusElement.onclick != null) {
+				console.log(focusElement);
+				focusElement.click();
+			}
+            return;
         case TvKeyCode.KEY_UP:
-        	cursorPosition -= 1;
+        	e.preventDefault();
+        	console.log("UP");
+        	cadidates = cursorElements.filter((el) => el.getBoundingClientRect().top < focusElement.getBoundingClientRect().top);
+        	if (cadidates.length > 0) {
+        		candidates = cadidates.sort((a, b) => {
+        			const xADistance = Math.abs(focusElement.getBoundingClientRect().top - a.getBoundingClientRect().top);
+        			const yADistance = Math.abs(focusElement.getBoundingClientRect().left - a.getBoundingClientRect().left);
+        			const xBDistance = Math.abs(focusElement.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        			const yBDistance = Math.abs(focusElement.getBoundingClientRect().left - b.getBoundingClientRect().left);
+        			
+        			if (yADistance > yBDistance) {
+        				return 1;
+        			} else if (yBDistance > yADistance) {
+        				return -1;
+        			} else {
+        				const aEuclidianDistance = Math.sqrt(Math.pow(xADistance, 2) + Math.pow(yADistance, 2));
+        				const bEuclidianDistance = Math.sqrt(Math.pow(xBDistance, 2) + Math.pow(yBDistance, 2));
+        				
+        				if (aEuclidianDistance > bEuclidianDistance) {
+        					return 1;
+        				} else if (bEuclidianDistance > aEuclidianDistance) {
+        					return -1;
+        				} else {
+        					return 0;
+        				}
+        			}
+        		});
+        		nextElement = candidates[0]
+        	}
 			break;
         case TvKeyCode.KEY_LEFT:
-        	cursorPosition -= 1;
-	        break;
+        	e.preventDefault();
+        	console.log("LEFT");
+        	cadidates = cursorElements.filter((el) => el.getBoundingClientRect().left < focusElement.getBoundingClientRect().left);
+        	if (cadidates.length > 0) {
+        		candidates = cadidates.sort((a, b) => {
+        			const xADistance = Math.abs(focusElement.getBoundingClientRect().top - a.getBoundingClientRect().top);
+        			const yADistance = Math.abs(focusElement.getBoundingClientRect().left - a.getBoundingClientRect().left);
+        			const xBDistance = Math.abs(focusElement.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        			const yBDistance = Math.abs(focusElement.getBoundingClientRect().left - b.getBoundingClientRect().left);
+        			
+        			if (xADistance > xBDistance) {
+        				return 1;
+        			} else if (xBDistance > xADistance) {
+        				return -1;
+        			} else {
+        				const aEuclidianDistance = Math.sqrt(Math.pow(xADistance, 2) + Math.pow(yADistance, 2));
+        				const bEuclidianDistance = Math.sqrt(Math.pow(xBDistance, 2) + Math.pow(yBDistance, 2));
+        				
+        				if (aEuclidianDistance > bEuclidianDistance) {
+        					return 1;
+        				} else if (bEuclidianDistance > aEuclidianDistance) {
+        					return -1;
+        				} else {
+        					return 0;
+        				}
+        			}
+        		});
+        		nextElement = candidates[0]
+        	}
+			break;
         case TvKeyCode.KEY_DOWN:
-        	cursorPosition += 1;
+        	e.preventDefault();
+        	console.log("DOWN");
+        	cadidates = cursorElements.filter((el) => el.getBoundingClientRect().top > focusElement.getBoundingClientRect().top);
+        	console.log(cadidates.length)
+        	if (cadidates.length > 0) {
+        		candidates = cadidates.sort((a, b) => {
+        			const xADistance = Math.abs(focusElement.getBoundingClientRect().top - a.getBoundingClientRect().top);
+        			const yADistance = Math.abs(focusElement.getBoundingClientRect().left - a.getBoundingClientRect().left);
+        			const xBDistance = Math.abs(focusElement.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        			const yBDistance = Math.abs(focusElement.getBoundingClientRect().left - b.getBoundingClientRect().left);
+        			
+        			if (yADistance > yBDistance) {
+        				return 1;
+        			} else if (yBDistance > yADistance) {
+        				return -1;
+        			} else {
+        				const aEuclidianDistance = Math.sqrt(Math.pow(xADistance, 2) + Math.pow(yADistance, 2));
+        				const bEuclidianDistance = Math.sqrt(Math.pow(xBDistance, 2) + Math.pow(yBDistance, 2));
+        				
+        				if (aEuclidianDistance > bEuclidianDistance) {
+        					return 1;
+        				} else if (bEuclidianDistance > aEuclidianDistance) {
+        					return -1;
+        				} else {
+        					return 0;
+        				}
+        			}
+        		});
+        		nextElement = candidates[0]
+        	}
 			break;
 		case TvKeyCode.KEY_RIGHT:
-			cursorPosition += 1;
-            break;
+			e.preventDefault();
+			console.log("RIGHT")
+			cadidates = cursorElements.filter((el) => el.getBoundingClientRect().left > focusElement.getBoundingClientRect().left);
+        	if (cadidates.length > 0) {
+        		candidates = cadidates.sort((a, b) => {
+        			const xADistance = Math.abs(focusElement.getBoundingClientRect().top - a.getBoundingClientRect().top);
+        			const yADistance = Math.abs(focusElement.getBoundingClientRect().left - a.getBoundingClientRect().left);
+        			const xBDistance = Math.abs(focusElement.getBoundingClientRect().top - b.getBoundingClientRect().top);
+        			const yBDistance = Math.abs(focusElement.getBoundingClientRect().left - b.getBoundingClientRect().left);
+        			
+        			if (xADistance > xBDistance) {
+        				return 1;
+        			} else if (xBDistance > xADistance) {
+        				return -1;
+        			} else {
+        				const aEuclidianDistance = Math.sqrt(Math.pow(xADistance, 2) + Math.pow(yADistance, 2));
+        				const bEuclidianDistance = Math.sqrt(Math.pow(xBDistance, 2) + Math.pow(yBDistance, 2));
+        				
+        				if (aEuclidianDistance > bEuclidianDistance) {
+        					return 1;
+        				} else if (bEuclidianDistance > aEuclidianDistance) {
+        					return -1;
+        				} else {
+        					return 0;
+        				}
+        			}
+        		});
+        		nextElement = candidates[0]
+        	}
+			break;
     }
 	
-	if (cursorPosition < 0) {
-		cursorPosition = 0;
+	if (nextElement == null) {
+		return
 	}
 	
-	if (cursorPosition >= cursorElements.length) {
-		cursorPosition = cursorElements.length - 1;
-	}
+	focusElement.classList.remove("focus");
+	focusElement = nextElement
+	focusElement.classList.add("focus");
+	window.scrollTo({ top: focusElement.offsetTop-300, behavior: 'smooth'});
+}
+
+function loadUIComponents() {
+	cursorElements = $('*[data-role="ui-option"]').get();
+	let aux = $('*[data-role="ui-shadow"]');
+	aux.each((index) => {
+		let elements = $(aux[index].shadowRoot).find('*[data-role="ui-option"]').get();
+		cursorElements = cursorElements.concat(elements)
+	})
 	
-	cursorElements[cursorPosition].focus()
+	cursorElements.forEach((el) => {
+		if (el.hasAttribute('firstFocus')) {
+			focusElement = el;
+		}
+	});
+	
+	if (focusElement != null) {
+		focusElement.classList.add("focus");
+		window.scrollTo({ top: focusElement.offsetTop-300, behavior: 'smooth'});
+	}
 }
 
 $(document).ready(function(){
 	document.addEventListener('keydown', setFocusElement);
-	
-	cursorElements = $('*[data-role="ui-option"]');
-	if (cursorElements.length > 0) {
-		cursorElements[0].focus()
-	}
+	loadUIComponents();
 });

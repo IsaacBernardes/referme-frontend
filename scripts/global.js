@@ -17,11 +17,19 @@ class Navbar extends HTMLElement {
         <div style="display: flex; justify-content: space-between; padding: 1rem; align-items: center; background: rgba(125, 125, 125, 0.2);">
             <img style="height: 2rem" src="./assets/logo.svg">
             <div style="display: flex; column-gap: 1rem; color: #FFF; font-size: 1rem">
-                <span style="${selected == "trendings" ? 'color: #FDAD00' : ''}">Em Alta</span>
-                <span style="${selected == "recommendations" ? 'color: #FDAD00' : ''}">Indicações</span>
-                <span style="${selected == "search" ? 'color: #FDAD00' : ''}">Procurar</span>
+                <span style="${selected == "trendings" ? 'color: #FDAD00' : ''}" data-role="ui-option" onclick="redirectTo('trendings')" ${selected == "trendings" ? 'firstFocus' : ''}>Em Alta</span>
+                <span style="${selected == "recommendations" ? 'color: #FDAD00' : ''}" data-role="ui-option" onclick="redirectTo('recommendations')" ${selected == "recommendations" ? 'firstFocus' : ''}>Indicações</span>
+                <span style="${selected == "search" ? 'color: #FDAD00' : ''}" data-role="ui-option" onclick="redirectTo('search')" ${selected == "search" ? 'firstFocus' : ''}>Procurar</span>
             </div>
         </div>
+        <style>
+	        *.focus {
+	        	box-shadow: 0px 0px 20px 20px rgba(0, 238, 253, 0.25) !important;
+	        	background-color: rgba(0, 238, 253, 0.25);
+	        	border: 0;
+	        	outline: 0;
+	        }
+        </style>
         `;
     }
 }
@@ -239,3 +247,8 @@ class TizenFileReader {
 
 customElements.get('movie-card') || customElements.define('movie-card', MovieCard);
 customElements.get('nav-bar') || customElements.define('nav-bar', Navbar);
+
+
+function redirectTo(page) {
+	window.location.href = page + ".html"
+}
