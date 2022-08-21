@@ -45,6 +45,11 @@ function getData() {
     const movieCard = document.createElement('movie-card');
     movieCard.setAttribute('data-role', 'ui-option');
     movieCard.setAttribute('data-object', JSON.stringify(movie));
+    movieCard.onclick = (el) => {
+    	const shadowRoot = el.target.shadowRoot;
+    	shadowRoot.getElementById("poster").click();
+    	modalOpened = shadowRoot.getElementById("overlay");
+    }
     movieListDiv.appendChild(movieCard);
   }
 
@@ -53,7 +58,20 @@ function getData() {
 
 function toggleFilters() {
   const filterRow = document.getElementById("filter-row");
-	filterRow.style.display = filterRow.style.display == "none" ? "flex" : "none";
+  
+  if (filterRow.style.display == "none") {
+	  filterRow.style.display = "flex";
+	  for (let el of filterRow.children) {
+		  el.setAttribute("data-role", "ui-option");
+	  }
+  } else {
+	  filterRow.style.display = "none";
+	  for (let el of filterRow.children) {
+		  el.removeAttribute("data-role");
+	  }
+  }
+  
+  loadUIComponents();
 }
 
 getData();

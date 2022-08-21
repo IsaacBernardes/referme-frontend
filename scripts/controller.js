@@ -29,7 +29,7 @@ window.TvKeyCode =
 		"KEY_UP" : 38,
 		"KEY_DOWN" : 40,
 		"KEY_ENTER" : 13,
-		"KEY_BACK" : 0,
+		"KEY_BACK" : 10009,
 		
 		"KEY_RED" : 403,
 		"KEY_GREEN" : 404,
@@ -41,8 +41,12 @@ window.TvKeyCode =
 
 var focusElement;
 var cursorElements = []
+var modalOpened;
+
 
 function setFocusElement(e) {
+	
+	console.log(e.keyCode);
 	
 	let nextElement = null;
 	let candidates = [];
@@ -50,21 +54,26 @@ function setFocusElement(e) {
 	
 	if (focusElement == null && cursorElements.length > 0) {
 		cursorElements[0].classList.add("focus");
-		cursorElements[0].focus()
 		focusElement = cursorElements[0];
 	}
 
 	switch (e.keyCode) {
 		case TvKeyCode.KEY_ENTER:
 			e.preventDefault();
+			if (focusElement instanceof HTMLInputElement) {
+				focusElement.focus();
+			}
+//			if (focusElement instanceof HTMLSelectElement) {
+//				let se = $(focusElement);
+//				se.show();
+//				se[0].size=2;
+//			}
 			if (focusElement.onclick != null) {
-				console.log(focusElement);
 				focusElement.click();
 			}
             return;
         case TvKeyCode.KEY_UP:
         	e.preventDefault();
-        	console.log("UP");
         	cadidates = cursorElements.filter((el) => el.getBoundingClientRect().top < focusElement.getBoundingClientRect().top);
         	if (cadidates.length > 0) {
         		candidates = cadidates.sort((a, b) => {
@@ -95,7 +104,6 @@ function setFocusElement(e) {
 			break;
         case TvKeyCode.KEY_LEFT:
         	e.preventDefault();
-        	console.log("LEFT");
         	cadidates = cursorElements.filter((el) => el.getBoundingClientRect().left < focusElement.getBoundingClientRect().left);
         	if (cadidates.length > 0) {
         		candidates = cadidates.sort((a, b) => {
@@ -158,7 +166,6 @@ function setFocusElement(e) {
 			break;
 		case TvKeyCode.KEY_RIGHT:
 			e.preventDefault();
-			console.log("RIGHT")
 			cadidates = cursorElements.filter((el) => el.getBoundingClientRect().left > focusElement.getBoundingClientRect().left);
         	if (cadidates.length > 0) {
         		candidates = cadidates.sort((a, b) => {
@@ -187,6 +194,13 @@ function setFocusElement(e) {
         		nextElement = candidates[0]
         	}
 			break;
+		case TvKeyCode.KEY_BACK:
+			if (modalOpened) {
+				modalOpened.style.display = 'none';;
+				modalOpened = null;
+			}
+			break;
+			
     }
 	
 	if (nextElement == null) {
@@ -194,28 +208,36 @@ function setFocusElement(e) {
 	}
 	
 	focusElement.classList.remove("focus");
+	focusElement.blur();
 	focusElement = nextElement
 	focusElement.classList.add("focus");
-	window.scrollTo({ top: focusElement.offsetTop-300, behavior: 'smooth'});
+	focusElement.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+    });
 }
 
 function loadUIComponents() {
 	cursorElements = $('*[data-role="ui-option"]').get();
+	console.log(cursorElements);
 	let aux = $('*[data-role="ui-shadow"]');
 	aux.each((index) => {
 		let elements = $(aux[index].shadowRoot).find('*[data-role="ui-option"]').get();
 		cursorElements = cursorElements.concat(elements)
 	})
 	
-	cursorElements.forEach((el) => {
-		if (el.hasAttribute('firstFocus')) {
-			focusElement = el;
+	if (focusElement == null) {
+		cursorElements.forEach((el) => {
+			if (el.hasAttribute('firstFocus')) {
+				focusElement = el;
+			}
+		});
+		
+		if (focusElement != null) {
+			focusElement.classList.add("focus");
+			window.scrollTo({ top: focusElement.offsetTop-300, behavior: 'smooth'});
 		}
-	});
-	
-	if (focusElement != null) {
-		focusElement.classList.add("focus");
-		window.scrollTo({ top: focusElement.offsetTop-300, behavior: 'smooth'});
 	}
 }
 
