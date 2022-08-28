@@ -46,8 +46,6 @@ var modalOpened;
 
 function setFocusElement(e) {
 	
-	console.log(e.keyCode);
-	
 	let nextElement = null;
 	let candidates = [];
 	let size = 0;
@@ -63,11 +61,6 @@ function setFocusElement(e) {
 			if (focusElement instanceof HTMLInputElement) {
 				focusElement.focus();
 			}
-//			if (focusElement instanceof HTMLSelectElement) {
-//				let se = $(focusElement);
-//				se.show();
-//				se[0].size=2;
-//			}
 			if (focusElement.onclick != null) {
 				focusElement.click();
 			}
@@ -134,7 +127,6 @@ function setFocusElement(e) {
 			break;
         case TvKeyCode.KEY_DOWN:
         	e.preventDefault();
-        	console.log("DOWN");
         	cadidates = cursorElements.filter((el) => el.getBoundingClientRect().top > focusElement.getBoundingClientRect().top);
         	console.log(cadidates.length)
         	if (cadidates.length > 0) {
@@ -212,7 +204,7 @@ function setFocusElement(e) {
 	focusElement = nextElement
 	focusElement.classList.add("focus");
 	focusElement.scrollIntoView({
-        behavior: 'auto',
+        behavior: 'smooth',
         block: 'center',
         inline: 'center'
     });
@@ -220,7 +212,6 @@ function setFocusElement(e) {
 
 function loadUIComponents() {
 	cursorElements = $('*[data-role="ui-option"]').get();
-	console.log(cursorElements);
 	let aux = $('*[data-role="ui-shadow"]');
 	aux.each((index) => {
 		let elements = $(aux[index].shadowRoot).find('*[data-role="ui-option"]').get();

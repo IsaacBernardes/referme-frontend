@@ -26,3 +26,31 @@
 	
 	color: #AFAFAF;
 }
+
+.appear {
+	animation: appear 1.2s linear both;
+}
+
+.scaleup-appear {
+	animation: scaleup-appear 0.4s linear 1.6s both;
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes scaleup-appear {
+  0% {
+  	opacity: 0;
+  	transform: scale(0.8);
+  }
+  100% {
+  	opacity: 1;
+  	transform: scale(1);
+  }
+}

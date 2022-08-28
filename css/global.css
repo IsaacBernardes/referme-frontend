@@ -14,9 +14,17 @@ body {
     background: linear-gradient(107.56deg, #262626 0%, #313131 100%) !important;
 }
 
+button {
+	transition-duration: 450ms;
+}
+
+button:active {
+	transform: scale(0.8);
+}
+
 *.focus {
-	box-shadow: 0px 0px 20px 20px rgba(0, 238, 253, 0.25) !important;
-	background-color: rgba(0, 238, 253, 0.25);
+	box-shadow: 0px 0px 20px 20px rgba(0, 238, 253, 0.35) !important;
+	background-color: rgba(0, 238, 253, 0.35);
 	border: 0;
 	outline: 0;
 }
@@ -60,4 +68,60 @@ body {
 .section-label::before {
 	content: "― ";
 	color: #FDAD00;
+}
+
+.overflow-auto {
+	overflow: auto !important;
+}
+
+// ANIMATIONS ----------------------------------------------------------------------
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes slidedown-appear {
+	0% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+
+@keyframes slidedown {
+	0% {
+		transform: translateY(=100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+
+@keyframes scaleup {
+	0% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes scaleup-appear {
+  0% {
+  	opacity: 0;
+  	transform: scale(0.8);
+  }
+  100% {
+  	opacity: 1;
+  	transform: scale(1);
+  }
 }
