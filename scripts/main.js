@@ -5,17 +5,20 @@ function onSuccessRead(text) {
 
 
 	if (profiles.length > 0) {
-	
-		profilesHTML = ""
+		
+		let first = true;		
+		profilesHTML = "";
 		for (const profile of profiles) {
 			profilesHTML += `
-			<div class="d-flex flex-column align-items-center justify-content-center gap-3 appear" style="width: auto;" data-role="ui-option" onclick="redirectTo('trendings')">
+			<div class="d-flex flex-column align-items-center justify-content-center gap-3 appear" style="width: auto;" 
+				data-role="ui-option" onclick="redirectTo('trendings')" ${first ? 'firstFocus' : ''}>
 				<div style="background-color: #D9D9D9; border-radius: 100%; width: 7rem; height: 7rem; overflow: hidden;">
 					<img src="assets/person-1.jpg" style="width: 100%; height: 100%">
 				</div>
 				<span style="color: #FFFFFF; font-family: 'Inter'; font-size: 1.2rem;">${profile.name}</span>
 			</div>
 			`
+			first = false;
 		}
 
 		const profileListHTML = document.getElementById("has-profiles");
@@ -25,8 +28,12 @@ function onSuccessRead(text) {
 	} else {
 		const profileListHTML = document.getElementById("no-profiles");
 		profileListHTML.style.display = "flex";
+		
+		const btn = document.getElementById("create-btn");
+		btn.setAttribute("firstFocus", "true");
 	}
 	
+	focusElement = null;
 	loadUIComponents();
 }
 

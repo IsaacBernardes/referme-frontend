@@ -90,7 +90,7 @@ class MovieCard extends HTMLElement {
                         </div>
                     </div>
                     <div style="margin-top: auto">
-                        <a class="yellow-btn" href="${movieProps.trailerURL}" targer="_blank">Assistir Trailer</a>
+                        <a class="focus yellow-btn" href="${movieProps.trailerURL}" targer="_blank">Assistir Trailer</a>
                     </div>
                 </div>
             </div>
@@ -119,6 +119,7 @@ class MovieCard extends HTMLElement {
             	display: grid;
             	grid-template-columns: 40% 60%;
             	column-gap: 0.5rem;
+            	animation: slideup-appear 0.6s linear both;
             }
             .movie-title {
                 font-family: 'Jura', sans-serif;
@@ -156,6 +157,21 @@ class MovieCard extends HTMLElement {
                 font-weight: 700;
                 line-height: 2.8rem;
             }
+            *.focus {
+	        	box-shadow: 0px 0px 20px 20px rgba(0, 238, 253, 0.25) !important;
+	        	border: 0;
+	        	outline: 0;
+	        }
+            @keyframes slideup-appear {
+        	  0% {
+        	  	opacity: 0;
+        	  	transform: translateY(5%);
+        	  }
+        	  100% {
+        	  	opacity: 1;
+        	  	transform: translateY(0%);
+        	  }
+        	}
         </style>
         `;
 

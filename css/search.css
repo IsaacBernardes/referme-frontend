@@ -5,6 +5,7 @@ input, select {
 	color: #FFFFFF !important;
 	padding: 0.25rem 0.6rem !important;
  	width: 22rem !important;
+ 	animation: appear 0.2s linear both;
 }
 
 .appear {

@@ -21,35 +21,4 @@ function save() {
 			});
 		});
 	});
-
-	// tizen.filesystem.resolve('documents/refer-me', function(dir) {
-
-	// 	let profiles;
-	// 	if (!tizen.filesystem.pathExists('documents/refer-me/profiles.json')) {
-	// 		dir.createFile('profiles.json');
-	// 		profiles = [];
-	// 	} else {
-	// 		const rFile = dir.resolve('profiles.json')
-	// 		rFile.openStream("r", function(fs) {
-	// 			profiles = JSON.parse(fs.read(rFile.fileSize) ?? "[]");
-	// 			fs.close();
-				
-				
-
-	// 			const wFile = dir.resolve('profiles.json');
-	// 			wFile.openStream("w", function(fs) {
-	// 				fs.write(JSON.stringify(profiles));
-	// 				fs.close();
-	// 			}, function(e) {
-	// 				console.error("Error " + e.message);
-	// 				throw e;
-	// 			}, "UTF-8");
-
-	// 		}, function(e) {
-	// 			console.error("Error " + e.message);
-	// 			throw e;
-	// 		}, "UTF-8");
-	// 	}
-
-	// });
 }
