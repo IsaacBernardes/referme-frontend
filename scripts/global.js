@@ -82,7 +82,7 @@ class MovieCard extends HTMLElement {
                 	<div id="star-row" class="star-row"></div>
                     <div class="sinopse-row">
                         <label>Sinopse</label>
-                        <span class="sinopse">${movieProps.sinopse}</span>
+                        <span class="sinopse">${movieProps.synopsis}</span>
                     </div>
                     <div class="sinopse-row">
                         <label>Disponível em:</label>
@@ -188,10 +188,13 @@ class MovieCard extends HTMLElement {
             "Netflix": "assets/Netflix.png",
             "Disney": "assets/Disney.png"
         }
-        for (const platform of movieProps.platforms) {
-            const platformImg = document.createElement('img');
-            platformImg.src = platformMapping[platform];
-            platformsRow.append(platformImg);
+        
+        if (movieProps.platforms != null) {
+	        for (const platform of movieProps.platforms) {
+	            const platformImg = document.createElement('img');
+	            platformImg.src = platformMapping[platform];
+	            platformsRow.append(platformImg);
+	        }
         }
 
         this.removeAttribute("data-object");
