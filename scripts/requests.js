@@ -18,14 +18,36 @@ function listTrendingMovies(handler) {
 	
 }
 
-	
-function listMovies(page, handler) {
+
+function listReferences(likes, dislikes, handler) {
 	
 	const settings = {
 		method: 'GET'
 	}
 	
-	fetch(backendURL + "/movies?page=" + page, settings)
+	fetch(backendURL + "/refer?likes=" + likes + "&dislikes=" + dislikes, settings)
+	.then(function(response) { return response.json() })
+	.then(function(result) {
+		handler(result);
+	})
+	.catch(function(error) {
+	  console.log('There has been a problem with your fetch operation: ' + error.message);
+	});
+	
+}
+
+	
+function listMovies(page, search, handler) {
+	
+	const settings = {
+		method: 'GET'
+	}
+
+	const pathUrl = backendURL + "/movies"
+					  		+ "?page=" + page
+								+ "&search=" + search
+	
+	fetch(pathUrl, settings)
 	.then(function(response) { return response.json() })
 	.then(function(result) {
 		handler(result);

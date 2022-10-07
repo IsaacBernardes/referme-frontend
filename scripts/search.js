@@ -1,7 +1,8 @@
 page = 0;
 
 function getData() {
-  listMovies(0, getMoviesResult)
+  const search = document.getElementById("search-input").value;
+  listMovies(page, search, getMoviesResult)
 }
 
 function getMoviesResult(response) {
