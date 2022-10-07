@@ -187,9 +187,14 @@ function setFocusElement(e) {
         	}
 			break;
 		case TvKeyCode.KEY_BACK:
-			if (modalOpened) {
-				modalOpened.style.display = 'none';;
-				modalOpened = null;
+			let returnList = window.localStorage.getItem("RETURN_LIST");
+			if (returnList != null) {
+				returnList = JSON.parse(returnList);
+				if (returnList.length > 0) {
+					const lastPage = returnList.pop();
+					window.localStorage.setItem("RETURN_LIST", JSON.stringify(returnList));
+					window.location.href = lastPage;
+				}
 			}
 			break;
 			
@@ -209,6 +214,20 @@ function setFocusElement(e) {
         inline: 'center'
     });
 }
+
+
+function forceFocus(newElement) {
+	focusElement.classList.remove("focus");
+	focusElement.blur();
+	focusElement = newElement
+	focusElement.classList.add("focus");
+	focusElement.scrollIntoView({
+		behavior: 'smooth',
+		block: 'center',
+		inline: 'center'
+	});
+}
+
 
 function loadUIComponents() {
 	cursorElements = $('*[data-role="ui-option"]').get();

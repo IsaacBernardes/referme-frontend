@@ -5,9 +5,11 @@ function save() {
 	const favorite = document.getElementById("favorite-form").value;
 
 	const data = {
-		name,
-		birthday,
-		favorite
+		name: name,
+		birthday: birthday,
+		favorite: favorite,
+		likedMovies: [],
+		dislikedMovies: []
 	}
 
 	const fileReader = new TizenFileReader();

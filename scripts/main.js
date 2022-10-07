@@ -1,5 +1,10 @@
 var profiles = [];
 
+function selectProfile(username) {
+	window.localStorage.setItem("USERNAME", username);
+	redirectTo('trendings');
+}
+
 function onSuccessRead(text) {
   profiles = JSON.parse(text ?? "[]");
 
@@ -11,7 +16,7 @@ function onSuccessRead(text) {
 		for (const profile of profiles) {
 			profilesHTML += `
 			<div class="d-flex flex-column align-items-center justify-content-center gap-3 appear" style="width: auto;" 
-				data-role="ui-option" onclick="redirectTo('trendings')" ${first ? 'firstFocus' : ''}>
+				data-role="ui-option" onclick="selectProfile('${profile.name}')" ${first ? 'firstFocus' : ''}>
 				<div style="background-color: #D9D9D9; border-radius: 100%; width: 7rem; height: 7rem; overflow: hidden;">
 					<img src="assets/person-1.jpg" style="width: 100%; height: 100%">
 				</div>
@@ -38,6 +43,9 @@ function onSuccessRead(text) {
 }
 
 document.onreadystatechange = (ev) => {
+
+	window.localStorage.removeItem("USERNAME");
+	window.localStorage.setItem("RETURN_LIST", "[]");
 
 	// READ FILE IF EXIST
 	fileReader = new TizenFileReader();

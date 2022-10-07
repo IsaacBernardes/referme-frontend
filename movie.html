@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Movie details</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Mohave:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/global.css"/>
+		<script src="libs/jquery-3.6.0.min.js"></script>
+		<script src="scripts/global.js"></script>
+		<script src="scripts/requests.js"></script>
+	  	<script src="scripts/controller.js"></script>
+	</head>
+	<body>
+		<div id="overlay" class="movie-overlay">
+					<div class="overlay-card">
+							<img id="movie-poster" src="" width="100%">
+							<div style="display: flex; flex-direction: column">
+								<span id="movie-title" class="movie-title">MOVIE_NAME</span>
+								<div id="star-row" class="star-row"></div>
+									<div class="sinopse-row">
+											<label>Sinopse</label>
+											<span id="movie-synopsis" class="sinopse">MOVIE_SYNOPSIS</span>
+									</div>
+									<div class="sinopse-row">
+											<label>Disponível em:</label>
+											<div id="platforms-row" class="platforms-row">
+											</div>
+									</div>
+									<div style="margin-top: auto; display: flex; justify-content: space-between;">
+											<a class="yellow-btn" id="movie_trailer_url" targer="_blank" data-role="ui-option">Assistir Trailer</a>
+											<div class="d-flex gap-3 align-items-end">
+												<img class="circle" id="uf-like-option" src="./assets/unfilled-like.png" width="100" height="100" onclick="likeMovie()" data-role="ui-option">
+												<img class="circle" id="like-option" style="display: none;" src="./assets/like.png" width="100" height="100" onclick="removeAvaliation()" data-role="ui-option">
+												<img class="circle" id="uf-unlike-option" src="./assets/unfilled-unlike.png" width="100" height="100" onclick="deslikeMovie()" data-role="ui-option">
+												<img class="circle" id="unlike-option" style="display: none;" src="./assets/unlike.png" width="100" height="100" onclick="removeAvaliation()" data-role="ui-option">
+											</div>
+									</div>
+							</div>
+					</div>
+			</div>
+			<style>
+			.movie-overlay {
+				display: flex;
+				position: absolute;
+				width: 100vw;
+				height: 100vh;
+				z-index: 100;
+				top: 0;
+				left: 0;
+				justify-content: center;
+				align-items: center;
+				backdrop-filter: blur(4px);
+				background: rgba(0, 0, 0, 0.8);
+			}
+			.overlay-card {
+				background: rgba(38, 38, 38, 0.8);
+				width: 80vw;
+				min-width: 70%;
+				min-height: 70%;
+				border-radius: 1rem;
+				padding: 1rem;
+				display: grid;
+				grid-template-columns: 40% 60%;
+				column-gap: 0.5rem;
+				animation: slideup-appear 0.6s linear both;
+			}
+			.movie-title {
+				font-family: 'Jura', sans-serif;
+				font-style: normal;
+				font-weight: 700;
+				font-size: 1.6rem;
+				color: #FFFFFF;
+			}
+			.star-row {
+				display: flex;
+				column-gap: 0.5rem;
+			}
+			.star-row .material-icons {
+				color: #FDAD00;
+				box-shadow: 0px 4px 51px 0px #00000080;
+			}
+			.sinopse-row {
+				display: flex;
+				flex-direction: column;
+				color: #FFFFFF;
+				max-height: 15rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				margin-top: 1rem;
+			}
+			.sinopse-row label {
+				font-weight: 700;
+			}
+			.yellow-btn {
+				padding: 0.75rem 1rem;
+				color: #FFF;
+				background-color: #FDAD00;
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 700;
+				line-height: 2.8rem;
+			}
+			.circle {
+				border-radius: 100%;
+			}
+			@keyframes slideup-appear {
+				0% {
+					opacity: 0;
+					transform: translateY(5%);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0%);
+				}
+			}
+		</style>
+		<script src="./scripts/movie.js"></script>
+	</body>
+</html>

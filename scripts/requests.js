@@ -1,4 +1,4 @@
-var backendURL = "http://URL:8090/api"
+var backendURL = "http://192.168.0.111:8090/api"
 
 	
 function listTrendingMovies(handler) {
